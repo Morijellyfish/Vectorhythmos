@@ -1,20 +1,21 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class NoteMain : MonoBehaviour
 {
     //決め打ちされる数値たち
-    private float goal_Y = -7.4f;
-    private float size_X = 11;
-    private float size_Y = 17;
+    [NonSerialized] public float goal_Y = -7.4f;
+    [NonSerialized] public float size_X = 11;
+    [NonSerialized] public float size_Y = 17;
 
-    [SerializeField] GameObject Scripts;
     [SerializeField] bool EnableAnimationCurve;
-    [SerializeField] AnimationCurve Curve;
-    [SerializeField] float LandingTime;//着弾時刻
+    [SerializeField] public AnimationCurve Curve;
+    [SerializeField] public float LandingTime;//着弾時刻
 
     private GameObject child;
+    
     // Start is called before the first frame update
     void Start()
     {
