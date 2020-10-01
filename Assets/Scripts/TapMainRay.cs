@@ -7,7 +7,7 @@ public class TapMainRay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("TouchSupported:"+Input.touchSupported);
+        Debug.Log("TouchSupported:" + Input.touchSupported);
 
     }
 
