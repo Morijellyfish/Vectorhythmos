@@ -329,6 +329,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   LandingTime: 3.4
+  TapEffect: {fileID: 832881410574180417, guid: c33d66603f09d984099aeb3824dfbefc,
+    type: 3}
 --- !u!1001 &150463146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -524,6 +526,99 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51979359706cbb8499c199c96c70eb07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &210717871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 210717872}
+  - component: {fileID: 210717875}
+  - component: {fileID: 210717874}
+  - component: {fileID: 210717873}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &210717872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210717871}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1166610078}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &210717873
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210717871}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &210717874
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210717871}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &210717875
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210717871}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &260719222
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,6 +689,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   LandingTime: 3.2
+  TapEffect: {fileID: 832881410574180417, guid: c33d66603f09d984099aeb3824dfbefc,
+    type: 3}
 --- !u!1 &317945584
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +761,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   LandingTime: 3
+  TapEffect: {fileID: 832881410574180417, guid: c33d66603f09d984099aeb3824dfbefc,
+    type: 3}
 --- !u!1001 &326527633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -929,6 +1028,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   LandingTime: 1
+  TapEffect: {fileID: 832881410574180417, guid: c33d66603f09d984099aeb3824dfbefc,
+    type: 3}
 --- !u!1001 &389874274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1103,7 +1204,7 @@ BoxCollider:
   m_GameObject: {fileID: 636419056}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1114,7 +1215,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636419056}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1210,7 +1311,7 @@ BoxCollider:
   m_GameObject: {fileID: 863231303}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1221,7 +1322,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 863231303}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1623,7 +1724,7 @@ Transform:
   - {fileID: 260719223}
   - {fileID: 109414524}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1124803464
 GameObject:
@@ -1685,8 +1786,9 @@ Transform:
   m_Children:
   - {fileID: 1493613052}
   - {fileID: 389874275}
+  - {fileID: 210717872}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1241948290
 GameObject:
@@ -1716,7 +1818,7 @@ BoxCollider:
   m_GameObject: {fileID: 1241948290}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1727,7 +1829,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241948290}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1851,6 +1953,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   LandingTime: 2
+  TapEffect: {fileID: 832881410574180417, guid: c33d66603f09d984099aeb3824dfbefc,
+    type: 3}
 --- !u!1001 &1281686651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2059,6 +2163,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   LandingTime: 2.2
+  TapEffect: {fileID: 832881410574180417, guid: c33d66603f09d984099aeb3824dfbefc,
+    type: 3}
 --- !u!4 &1493613052 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2969018804019077644, guid: ae6f3029026164c45839554462bc6201,
@@ -2443,6 +2549,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   LandingTime: 2.4
+  TapEffect: {fileID: 832881410574180417, guid: c33d66603f09d984099aeb3824dfbefc,
+    type: 3}
 --- !u!1 &2124401662
 GameObject:
   m_ObjectHideFlags: 0
@@ -2453,7 +2561,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2124401663}
   m_Layer: 0
-  m_Name: empty
+  m_Name: Holizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2473,5 +2581,5 @@ Transform:
   - {fileID: 863231304}
   - {fileID: 636419057}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}

@@ -14,6 +14,8 @@ public class NoteMain : MonoBehaviour
     [SerializeField] public AnimationCurve Curve;
     [SerializeField] public float LandingTime;//着弾時刻
 
+    [SerializeField] GameObject TapEffect;
+
     private GameObject child;
     
     // Start is called before the first frame update
@@ -31,5 +33,15 @@ public class NoteMain : MonoBehaviour
         child.transform.localScale = new Vector2(size_X, size_Y) * (1 - curveValue);
         child.transform.localPosition = new Vector2(0, goal_Y - curveValue * goal_Y);
 
+    }
+    
+    public void Tap()
+    {
+        var tmp = Instantiate(TapEffect) as GameObject;
+        tmp.transform.parent = this.gameObject.transform;
+        tmp.transform.localPosition = child.transform.localPosition;
+        tmp.transform.rotation = transform.rotation;
+        tmp.transform.parent = null;
+        Destroy(this.gameObject);
     }
 }

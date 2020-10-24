@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,7 +29,14 @@ public class TapMainRay : MonoBehaviour
                 //(Debug)DrawRay
                 if (hit.Length != 0)
                 {
-                    Debug.DrawRay(raystart, new Vector3(0, 5, 0) - raystart, Color.red, 0.01f);
+                    if (touch.phase == TouchPhase.Began)
+                    {
+                        Debug.DrawRay(raystart, new Vector3(0, 5, 0) - raystart, Color.red, 0.01f);
+                    }
+                    else
+                    {
+                        Debug.DrawRay(raystart, new Vector3(0, 5, 0) - raystart, Color.yellow, 0.01f);
+                    }
                 }
                 else
                 {
@@ -38,8 +47,22 @@ public class TapMainRay : MonoBehaviour
                 if (hit.Length != 0)
                 {
                     //tap
-                    if (touch.phase == TouchPhase.Began)
-                    {
+                    if (touch.phase == TouchPhase.Began) {
+                        float time;
+                        int min;
+                        time = hit[0].transform.parent.gameObject.GetComponent<NoteMain>().LandingTime;
+                        min = 0;
+                        for (int i=0; i < hit.Length; i++)
+                        {
+                            var tmp = hit[i].transform.parent.gameObject.GetComponent<NoteMain>().LandingTime;
+                            if (time > tmp)
+                            {
+                                time = tmp;
+                                min = i;
+                            }
+                        }
+                        hit[min].transform.parent.GetComponent<NoteMain>().Tap();
+
                     }
                 }
 
