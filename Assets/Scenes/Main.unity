@@ -1837,9 +1837,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d3da4bd6a756d544a2eff8efe028962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: 12
-  time: 2
-  size: 1
+  lineS: 0
+  timeS: 1
+  sizeS: 1
+  EnableAnimationCurve: 0
+  Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  LandingTime: 0
 --- !u!60 &1549309177
 PolygonCollider2D:
   m_ObjectHideFlags: 0
