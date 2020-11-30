@@ -47,21 +47,6 @@ public class TapMainRay : MonoBehaviour
                 {
                     //tap
                     if (touch.phase == TouchPhase.Began) {
-                        float time;
-                        int min;
-                        time = hit[0].transform.parent.gameObject.GetComponent<NoteMain>().LandingTime;
-                        min = 0;
-                        for (int i=0; i < hit.Length; i++)
-                        {
-                            var tmp = hit[i].transform.parent.gameObject.GetComponent<NoteMain>().LandingTime;
-                            if (time > tmp)
-                            {
-                                time = tmp;
-                                min = i;
-                            }
-                        }
-                        hit[min].transform.parent.GetComponent<NoteMain>().Tap();
-
                     }
                 }
 
