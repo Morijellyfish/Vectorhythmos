@@ -25,7 +25,10 @@ public class TimeController : EditorWindow
             var objs = GameObject.FindGameObjectsWithTag("note");
             foreach (var obj in objs)
             {
-                obj.GetComponent<Spriter>().WriteSprite_debug();
+                if (obj.GetComponent<TapSpriter>())
+                {
+                    obj.GetComponent<TapSpriter>().WriteSprite_debug();
+                }
             }
         }
     }

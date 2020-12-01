@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System;
 
-public class Spriter : MonoBehaviour
+public class TapSpriter : MonoBehaviour
 {
     [SerializeField] int line;
     [SerializeField] int size=1;
-
     [SerializeField] bool EnableAnimationCurve;
     [SerializeField] public AnimationCurve Curve;
     [SerializeField] public float LandingTime;//着弾時刻
@@ -95,15 +94,11 @@ public class Spriter : MonoBehaviour
         {
             b = Curve.Evaluate(TimeManager.time - LandingTime) * 7.8f;//最終地点を1とした曲線を参照する
         }
-        //画面範囲外(負の値)なら作らない
-        if (b < 0)
-        {
-            return;
-        }
+        
         Vector2[] sv = new Vector2[2 + (size * 2)];
         Vector2[] pos = new Vector2[sv.Length];
         UInt16[] tras = new UInt16[size * 6];
-
+        
         //頂点の座標の生成
         var rad = Math.PI / 180;
         var angle = 180.0f / 16.0f;
@@ -126,9 +121,9 @@ public class Spriter : MonoBehaviour
         //overridegeometryはeditor上では使えないため
         for(int i = 0; i < tras.Length - 2; i++)
         {
-            Debug.DrawLine(pos[tras[i]], pos[tras[i + 1]], Color.red, 0.01f);
-            Debug.DrawLine(pos[tras[i+1]], pos[tras[i + 2]], Color.red, 0.01f);
-            Debug.DrawLine(pos[tras[i+2]], pos[tras[i]], Color.red, 0.01f);
+            Debug.DrawLine(pos[tras[i]], pos[tras[i + 1]], Color.red, 0.001f);
+            Debug.DrawLine(pos[tras[i+1]], pos[tras[i + 2]], Color.red, 0.001f);
+            Debug.DrawLine(pos[tras[i+2]], pos[tras[i]], Color.red, 0.001f);
         }
         
 
