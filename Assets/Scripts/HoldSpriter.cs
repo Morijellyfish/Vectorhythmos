@@ -3,10 +3,10 @@ using System;
 
 public class HoldSpriter : MonoBehaviour
 {
-    [SerializeField] note[] points;
+    [SerializeField] Note[] points;
 
     [Serializable]
-    public class note
+    public class Note
     {
         public int line;
         public int size=1;
@@ -28,7 +28,7 @@ public class HoldSpriter : MonoBehaviour
         for (int p = 0; p < points.Length; p++)
         {
             int line=points[p].line;
-            int size = points[p].line;
+            int size = points[p].size;
             bool EnableAnimationCurve= points[p].EnableAnimationCurve;
             AnimationCurve Curve= points[p].Curve;
             float LandingTime= points[p].LandingTime;
@@ -58,7 +58,7 @@ public class HoldSpriter : MonoBehaviour
                 pos[2 + i] = b * 1.00f * new Vector2((float)Math.Cos(((angle * (line + 1 + (i / 2))) + 180) * rad), (float)Math.Sin(((angle * (line + 1 + (i / 2))) + 180) * rad)) + new Vector2(0, 5);
                 pos[3 + i] = b * 1.05f * new Vector2((float)Math.Cos(((angle * (line + 1 + (i / 2))) + 180) * rad), (float)Math.Sin(((angle * (line + 1 + (i / 2))) + 180) * rad)) + new Vector2(0, 5);
             }
-            
+
             //頂点の座標の変換
             for (int i = 0; i < sv.Length; i++)
             {
@@ -79,7 +79,7 @@ public class HoldSpriter : MonoBehaviour
             for (int i = 0; i < cpos.Length; i += 2)
             {
                 cpos[i / 2] = pos[i];
-                cpos[(i / 2) + (cpos.Length / 2)] = pos[(pos.Length - i) - 1];
+                cpos[(i / 2) + (cpos.Length / 2)] = pos[(cpos.Length - i) - 1];
             }
             PolygonCollider2D polygon = gameObject.GetComponent<PolygonCollider2D>();
             polygon.SetPath(p, cpos);
@@ -88,10 +88,52 @@ public class HoldSpriter : MonoBehaviour
             Array.Resize(ref AllTras, AllTras.Length + tras.Length);
             sv.CopyTo(AllSv, AllSv.Length - sv.Length);
             tras.CopyTo(AllTras, AllTras.Length - tras.Length);
-
-
         }
 
+        int sum = 0;
+        for(int p = 0; p+1 < points.Length; p++)
+        {
+            //下辺から上辺
+            UInt16[] tras = new UInt16[3 * points[p].size];
+            for (int i = 0; i < points[p].size; i++)
+            {
+                tras[0 + (3 * i)] = (UInt16)(sum+0+(i*2));
+                tras[1 + (3 * i)] = (UInt16)(sum+2+(i*2));
+                UInt16 tmp = (UInt16)(sum+(2 * (points[p].size + 1)) + 1 + (i * 2));
+                if (tmp > sum + (2 * (points[p].size + 1)) + (2 * (points[p + 1].size + 1)))//次のノーツの頂点を通過しないために
+                {
+                    tras[2 + (3 * i)] = (UInt16)(-1+sum + (2 * (points[p].size + 1))+(2 * (points[p+1].size + 1)));
+                }
+                else
+                {
+                    tras[2 + (3 * i)] = tmp;
+                }
+            }
+            Array.Resize(ref AllTras, AllTras.Length + tras.Length);
+            tras.CopyTo(AllTras, AllTras.Length - tras.Length);
+            sum += 2 * (points[p].size + 1);//ここまでの頂点数
+
+            //上辺から下辺
+            tras = new UInt16[3*points[p + 1].size];
+            for(int i = 0; i < points[p + 1].size; i++)
+            {
+                tras[0 + (3 * i)] = (UInt16)(1 + (sum) + (i * 2));
+                tras[1 + (3 * i)] = (UInt16)(3 + (sum) + (i * 2));
+                UInt16 tmp = (UInt16)((sum-(2*(points[p].size+1)))+2 + (i * 2));
+                if (tmp > sum-1)
+                {
+                    tras[2 + (3 * i)] = (UInt16)(sum-2);
+                }
+                else
+                {
+                    tras[2 + (3 * i)] = tmp;
+                }
+            }
+            Array.Resize(ref AllTras, AllTras.Length + tras.Length);
+            tras.CopyTo(AllTras, AllTras.Length - tras.Length);
+
+        }
+        
         SpriteRenderer spriteR = gameObject.GetComponent<SpriteRenderer>();
         Texture2D tex2d = new Texture2D(Screen.width, Screen.height);
         spriteR.sprite = Sprite.Create(tex2d, new Rect(0, 0, tex2d.width, tex2d.height), new Vector2(0.5f, 0.5f), 75);

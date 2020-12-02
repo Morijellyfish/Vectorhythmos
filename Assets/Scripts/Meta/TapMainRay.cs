@@ -48,6 +48,7 @@ public class TapMainRay : MonoBehaviour
                     //tap
                     if (touch.phase == TouchPhase.Began) {
                     }
+                    Debug.Log(hit[0].transform.gameObject.name);
                 }
 
 
