@@ -29,6 +29,10 @@ public class TimeController : EditorWindow
                 {
                     obj.GetComponent<TapSpriter>().WriteSprite_debug();
                 }
+                if (obj.GetComponent<HoldSpriter>())
+                {
+                    obj.GetComponent<HoldSpriter>().WriteSprite_debug();
+                }
             }
         }
     }
