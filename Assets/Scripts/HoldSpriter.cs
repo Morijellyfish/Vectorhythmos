@@ -17,6 +17,7 @@ public class HoldSpriter : MonoBehaviour
     private void Update()
     {
         WriteSprite();
+        WriteTrail();
     }
 
     public void WriteSprite()
@@ -141,6 +142,12 @@ public class HoldSpriter : MonoBehaviour
         o.OverrideGeometry(AllSv, AllTras);
 
     }
+
+    public void WriteTrail()
+    {
+
+    }
+
 
     public void WriteSprite_debug()
     {

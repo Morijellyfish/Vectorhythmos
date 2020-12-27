@@ -33,6 +33,10 @@ public class TimeController : EditorWindow
                 {
                     obj.GetComponent<HoldSpriter>().WriteSprite_debug();
                 }
+                if (obj.GetComponent<TapNoteMesh>())
+                {
+                    obj.GetComponent<TapNoteMesh>().WriteMesh();
+                }
             }
         }
     }
