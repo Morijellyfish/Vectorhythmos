@@ -20,10 +20,10 @@ public class TapNoteMesh : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        WriteMesh();
+        GenerateMesh();
     }
 
-    public void WriteMesh()
+    public void GenerateMesh()
     {
         if (size <= 0)
         {
@@ -83,5 +83,18 @@ public class TapNoteMesh : MonoBehaviour
         mesh.colors = colors;
 
         GetComponent<MeshFilter>().mesh = mesh;
+
+
+        Vector2[] cpos = new Vector2[pos.Length];
+        for(int i = 0; i < cpos.Length; i+=2)
+        {
+            cpos[i / 2] = new Vector2(pos[i].x, pos[i].y);
+            cpos[(i / 2)+(cpos.Length/2)] = new Vector2(pos[(pos.Length-i)-1].x, pos[(pos.Length - i) - 1].y);
+        }
+        PolygonCollider2D polygon = gameObject.GetComponent<PolygonCollider2D>();
+        polygon.pathCount = 1;
+        polygon.SetPath(0, cpos);
+
     }
+    
 }

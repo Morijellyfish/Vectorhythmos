@@ -35,7 +35,7 @@ public class TimeController : EditorWindow
                 }
                 if (obj.GetComponent<TapNoteMesh>())
                 {
-                    obj.GetComponent<TapNoteMesh>().WriteMesh();
+                    obj.GetComponent<TapNoteMesh>().GenerateMesh();
                 }
             }
         }
