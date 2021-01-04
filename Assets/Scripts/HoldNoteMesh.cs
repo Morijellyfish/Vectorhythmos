@@ -127,14 +127,25 @@ public class HoldNoteMesh : MonoBehaviour
             for (int i = 0; i < points[p].size; i++)
             {
                 tras[i * 3] = (i * 2)+Vsum;
-
-                tras[i * 3 + 1] = (((points[p].size + 1) * 2) + 1 + (i * 2))+Vsum;
+                if (points.Length - 1 != p)
+                {
+                    if (points[p + 1].size >= i)
+                    {
+                        tras[i * 3 + 1] = (((points[p].size + 1) * 2) + 1 + (i * 2)) + Vsum;
+                    }
+                    else
+                    {
+                        tras[i * 3 + 1] = (((points[p].size + 1) * 2) + 1 + (points[p+1].size * 2)) + Vsum;
+                    }
+                }
                 tras[i * 3 + 2] = (i * 2 + 2)+Vsum;
             }
             Array.Resize(ref AllTras, AllTras.Length + tras.Length);
             tras.CopyTo(AllTras, AllTras.Length - tras.Length);
             Vsum += (points[p].size + 1) * 2;
         }
+
+
         //▼
         Vsum = (points[0].size+1)*2;
         for (int p = 1; p < points.Length; p++)
@@ -144,7 +155,14 @@ public class HoldNoteMesh : MonoBehaviour
             {
                 tras[i * 3] = (i * 2) + Vsum +1;
                 tras[i * 3 + 1] = ((i * 2) + 2) + Vsum+1;
-                tras[i * 3 + 2] = (Vsum-((points[p-1].size+1)*2))+(i+1)*2;
+                if (points[p - 1].size > i)
+                {
+                    tras[i * 3 + 2] = (Vsum - ((points[p - 1].size + 1) * 2)) + (i + 1) * 2;
+                }
+                else
+                {
+                    tras[i * 3 + 2] = (Vsum - ((points[p - 1].size + 1) * 2)) + (points[p-1].size) * 2;
+                }
                 Debug.Log(tras[i * 3] + "," + tras[i * 3 + 1] + "," + tras[i * 3 + 2]);
             }
             Array.Resize(ref AllTras, AllTras.Length + tras.Length);
