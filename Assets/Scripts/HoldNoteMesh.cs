@@ -46,24 +46,34 @@ public class HoldNoteMesh : MonoBehaviour
             {
                 b = points[p].Curve.Evaluate(TimeManager.time - points[p].LandingTime) * 7.8f;//最終地点を1とした曲線を参照する
             }
-            //画面範囲外(負の値)なら作らない
-            if (b < 0)
-            {
-                return;
-            }
+            
             Vector3[] pos = new Vector3[2 + (points[p].size * 2)];
             int[] tras = new int[points[p].size * 6];
 
             //頂点の座標の生成
             var rad = Math.PI / 180;
             var angle = 180.0f / 16.0f;
-            pos[0] = b * 1.00f * new Vector2((float)Math.Cos(((angle * (points[p].line + 0)) + 180) * rad), (float)Math.Sin(((angle * (points[p].line + 0)) + 180) * rad)) + new Vector2(0, 5);
-            pos[1] = b * 1.05f * new Vector2((float)Math.Cos(((angle * (points[p].line + 0)) + 180) * rad), (float)Math.Sin(((angle * (points[p].line + 0)) + 180) * rad)) + new Vector2(0, 5);
-            for (int i = 0; i < points[p].size * 2; i += 2)
+            if (b >= 0)
             {
-                pos[2 + i] = b * 1.00f * new Vector2((float)Math.Cos(((angle * (points[p].line + 1 + (i / 2))) + 180) * rad), (float)Math.Sin(((angle * (points[p].line + 1 + (i / 2))) + 180) * rad)) + new Vector2(0, 5);
-                pos[3 + i] = b * 1.05f * new Vector2((float)Math.Cos(((angle * (points[p].line + 1 + (i / 2))) + 180) * rad), (float)Math.Sin(((angle * (points[p].line + 1 + (i / 2))) + 180) * rad)) + new Vector2(0, 5);
+                pos[0] = b * 1.00f * new Vector2((float)Math.Cos(((angle * (points[p].line + 0)) + 180) * rad), (float)Math.Sin(((angle * (points[p].line + 0)) + 180) * rad)) + new Vector2(0, 5);
+                pos[1] = b * 1.01f * new Vector2((float)Math.Cos(((angle * (points[p].line + 0)) + 180) * rad), (float)Math.Sin(((angle * (points[p].line + 0)) + 180) * rad)) + new Vector2(0, 5);
+                for (int i = 0; i < points[p].size * 2; i += 2)
+                {
+                    pos[2 + i] = b * 1.00f * new Vector2((float)Math.Cos(((angle * (points[p].line + 1 + (i / 2))) + 180) * rad), (float)Math.Sin(((angle * (points[p].line + 1 + (i / 2))) + 180) * rad)) + new Vector2(0, 5);
+                    pos[3 + i] = b * 1.01f * new Vector2((float)Math.Cos(((angle * (points[p].line + 1 + (i / 2))) + 180) * rad), (float)Math.Sin(((angle * (points[p].line + 1 + (i / 2))) + 180) * rad)) + new Vector2(0, 5);
+                }
             }
+            else
+            {
+                pos[0] = new Vector2(0, 5);
+                pos[1] = new Vector2(0, 5);
+                for (int i = 0; i < points[p].size * 2; i += 2)
+                {
+                    pos[2 + i] = new Vector2(0, 5);
+                    pos[3 + i] = new Vector2(0, 5);
+                }
+            }
+            
             
             //頂点の順序
             for (int i = 0; i < points[p].size; i++)
@@ -81,12 +91,12 @@ public class HoldNoteMesh : MonoBehaviour
 
             for (int i = 0; i < colors.Length; i++)
             {
-                colors[i] = Color.red;
+                colors[i] = new Color(0.5f, 0.5f, 1);
             }
-            colors[0] = Color.black;
-            colors[1] = Color.black;
-            colors[points[p].size * 2] = Color.black;
-            colors[points[p].size * 2 + 1] = Color.black;
+            colors[0] = Color.blue;
+            colors[1] = Color.blue;
+            colors[points[p].size * 2] = Color.blue;
+            colors[points[p].size * 2 + 1] = Color.blue;
             
 
 
@@ -163,7 +173,6 @@ public class HoldNoteMesh : MonoBehaviour
                 {
                     tras[i * 3 + 2] = (Vsum - ((points[p - 1].size + 1) * 2)) + (points[p-1].size) * 2;
                 }
-                Debug.Log(tras[i * 3] + "," + tras[i * 3 + 1] + "," + tras[i * 3 + 2]);
             }
             Array.Resize(ref AllTras, AllTras.Length + tras.Length);
             tras.CopyTo(AllTras, AllTras.Length - tras.Length);

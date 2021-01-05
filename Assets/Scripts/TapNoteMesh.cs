@@ -35,11 +35,7 @@ public class TapNoteMesh : MonoBehaviour
         {
             b = Curve.Evaluate(TimeManager.time - LandingTime) * 7.8f;//最終地点を1とした曲線を参照する
         }
-        //画面範囲外(負の値)なら作らない
-        if (b < 0)
-        {
-            return;
-        }
+        
         Mesh mesh = new Mesh();
         Vector3[] pos = new Vector3[2 + (size * 2)];
         int[] tras = new int[size * 6];
@@ -47,13 +43,28 @@ public class TapNoteMesh : MonoBehaviour
         //頂点の座標の生成
         var rad = Math.PI / 180;
         var angle = 180.0f / 16.0f;
-        pos[0] = b * 1.00f * new Vector2((float)Math.Cos(((angle * (line + 0)) + 180) * rad), (float)Math.Sin(((angle * (line + 0)) + 180) * rad)) + new Vector2(0, 5);
-        pos[1] = b * 1.05f * new Vector2((float)Math.Cos(((angle * (line + 0)) + 180) * rad), (float)Math.Sin(((angle * (line + 0)) + 180) * rad)) + new Vector2(0, 5);
-        for (int i = 0; i < size * 2; i += 2)
+
+        if (b >= 0)
         {
-            pos[2 + i] = b * 1.00f * new Vector2((float)Math.Cos(((angle * (line + 1 + (i / 2))) + 180) * rad), (float)Math.Sin(((angle * (line + 1 + (i / 2))) + 180) * rad)) + new Vector2(0, 5);
-            pos[3 + i] = b * 1.05f * new Vector2((float)Math.Cos(((angle * (line + 1 + (i / 2))) + 180) * rad), (float)Math.Sin(((angle * (line + 1 + (i / 2))) + 180) * rad)) + new Vector2(0, 5);
+            pos[0] = b * 1.00f * new Vector2((float)Math.Cos(((angle * (line + 0)) + 180) * rad), (float)Math.Sin(((angle * (line + 0)) + 180) * rad)) + new Vector2(0, 5);
+            pos[1] = b * 1.05f * new Vector2((float)Math.Cos(((angle * (line + 0)) + 180) * rad), (float)Math.Sin(((angle * (line + 0)) + 180) * rad)) + new Vector2(0, 5);
+            for (int i = 0; i < size * 2; i += 2)
+            {
+                pos[2 + i] = b * 1.00f * new Vector2((float)Math.Cos(((angle * (line + 1 + (i / 2))) + 180) * rad), (float)Math.Sin(((angle * (line + 1 + (i / 2))) + 180) * rad)) + new Vector2(0, 5);
+                pos[3 + i] = b * 1.05f * new Vector2((float)Math.Cos(((angle * (line + 1 + (i / 2))) + 180) * rad), (float)Math.Sin(((angle * (line + 1 + (i / 2))) + 180) * rad)) + new Vector2(0, 5);
+            }
         }
+        else
+        {
+            pos[0] = new Vector2(0, 5);
+            pos[1] = new Vector2(0, 5);
+            for (int i = 0; i < size * 2; i += 2)
+            {
+                pos[2 + i] = new Vector2(0, 5);
+                pos[3 + i] = new Vector2(0, 5);
+            }
+        }
+        
         mesh.vertices = pos;
 
 
@@ -74,12 +85,12 @@ public class TapNoteMesh : MonoBehaviour
         
         for(int i = 0; i < colors.Length; i++)
         {
-            colors[i] = Color.red;
+            colors[i] = new Color(1,0.5f,0.5f);
         }
-        colors[0] = Color.black;
-        colors[1] = Color.black;
-        colors[size*2] = Color.black;
-        colors[size*2+1] = Color.black;
+        colors[0] = Color.red;
+        colors[1] = Color.red;
+        colors[size*2] = Color.red;
+        colors[size*2+1] = Color.red;
         mesh.colors = colors;
 
         GetComponent<MeshFilter>().mesh = mesh;
