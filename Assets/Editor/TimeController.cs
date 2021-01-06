@@ -33,6 +33,10 @@ public class TimeController : EditorWindow
                 {
                     obj.GetComponent<HoldNoteMesh>().GenerateMesh();
                 }
+                if (obj.GetComponent<SliderNoteMesh>())
+                {
+                    obj.GetComponent<SliderNoteMesh>().GenerateMesh();
+                }
             }
         }
     }
