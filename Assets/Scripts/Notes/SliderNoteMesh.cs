@@ -10,10 +10,15 @@ public class SliderNoteMesh : MonoBehaviour
     [SerializeField] bool EnableAnimationCurve;
     [SerializeField] public AnimationCurve Curve;
     [SerializeField] public float LandingTime;//着弾時刻
+    [SerializeField] public LR type;
+    public enum LR
+    {
+        Left,Right
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-
 
     }
 
@@ -67,30 +72,54 @@ public class SliderNoteMesh : MonoBehaviour
 
         mesh.vertices = pos;
 
-
-        //頂点の順序
-        for (int i = 0; i < size; i++)
+        if (type == LR.Left)
         {
-            int x = i * 2;
-            tras[i * 6] = 0;
-            tras[i * 6 + 1] = 0;
-            tras[i * 6 + 2] = 0;
-            tras[i * 6 + 3] = x + 1;
-            tras[i * 6 + 4] = x + 2;
-            tras[i * 6 + 5] = x + 3;
+            //頂点の順序
+            for (int i = 0; i < size; i++)
+            {
+                int x = i * 2;
+                tras[i * 6 + 0] = x + 1;
+                tras[i * 6 + 1] = x + 2;
+                tras[i * 6 + 2] = x + 3;
+            }
+        }
+        else
+        {
+            //頂点の順序
+            for (int i = 0; i < size; i++)
+            {
+                int x = i * 2;
+                tras[i * 3 + 0] = x + 0;
+                tras[i * 3 + 1] = x + 3;
+                tras[i * 3 + 2] = x + 1;
+            }
         }
         mesh.triangles = tras;
 
         Color[] colors = new Color[mesh.vertices.Length];
 
-        for (int i = 0; i < colors.Length; i++)
+        if (type == LR.Left)//orange
         {
-            colors[i] = new Color(1f, 0.4f, 0.0f);
+            for (int i = 0; i < colors.Length; i++)
+            {
+                colors[i] = new Color(1f, 0.4f, 0.0f);
+            }
+            colors[0] = new Color(0.8f, 0.4f, 0.0f);
+            colors[1] = new Color(0.8f, 0.4f, 0.0f);
+            colors[size * 2] = new Color(0.8f, 0.4f, 0.0f);
+            colors[size * 2 + 1] = new Color(0.8f, 0.4f, 0.0f);
         }
-        colors[0] = new Color(0.8f, 0.4f, 0.0f);
-        colors[1] = new Color(0.8f, 0.4f, 0.0f);
-        colors[size * 2] = new Color(0.8f, 0.4f, 0.0f);
-        colors[size * 2 + 1] = new Color(0.8f, 0.4f, 0.0f);
+        else//green
+        {
+            for (int i = 0; i < colors.Length; i++)
+            {
+                colors[i] = new Color(0.2f, 0.8f, 0.2f);
+            }
+            colors[0] = new Color(0.2f, 0.6f, 0.2f);
+            colors[1] = new Color(0.2f, 0.6f, 0.2f);
+            colors[size * 2] = new Color(0.2f, 0.6f, 0.2f);
+            colors[size * 2 + 1] = new Color(0.2f, 0.6f, 0.2f);
+        }
         mesh.colors = colors;
 
         GetComponent<MeshFilter>().mesh = mesh;
