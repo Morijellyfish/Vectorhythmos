@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7141374820010993663}
   - component: {fileID: 7141374820010993657}
   - component: {fileID: 7141374820010993656}
-  m_Layer: 0
+  - component: {fileID: 9146183095308136200}
+  m_Layer: 8
   m_Name: Tap
   m_TagString: note
   m_Icon: {fileID: 0}
@@ -93,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f044bff89573e943ad4e1a112076c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: 0
+  line: 2
   size: 2
   EnableAnimationCurve: 0
   Curve:
@@ -146,9 +147,21 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -6.708, y: 5}
-      - {x: -6.5791078, y: 3.6913342}
-      - {x: -6.197384, y: 2.4329596}
-      - {x: -6.5072527, y: 2.3046076}
-      - {x: -6.9080625, y: 3.6259007}
-      - {x: -7.0434, y: 5}
+    - - {x: 0, y: 5}
+      - {x: 0, y: 5}
+      - {x: 0, y: 5}
+      - {x: 0, y: 5}
+      - {x: 0, y: 5}
+      - {x: 0, y: 5}
+--- !u!114 &9146183095308136200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7141374820010993661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9980b36756ad764f91b06124fcc5e45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
