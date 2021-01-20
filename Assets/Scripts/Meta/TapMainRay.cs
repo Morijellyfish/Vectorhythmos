@@ -35,6 +35,10 @@ public class TapMainRay : MonoBehaviour
                         TapnoteTap(LayerSort(hit, 8));//Tapnotes
                     }
                 }
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    HoldNoteEvent.TouchEnded(touch.tapCount);
+                }
 
 
                 var keys = LayerSort(hit, 31);

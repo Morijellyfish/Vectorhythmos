@@ -124,6 +124,7 @@ public class HoldNoteMesh : MonoBehaviour
         GetComponent<MeshFilter>().mesh = mesh;
 
         GenerateTrail(mesh);
+        GenerateTrailCollider(mesh);
     }
 
     public void GenerateTrail(Mesh mesh)
@@ -186,5 +187,29 @@ public class HoldNoteMesh : MonoBehaviour
 
     }
 
-
+    public void GenerateTrailCollider(Mesh mesh)
+    {
+        int Vsum = 2*(points[0].size+1);
+        PolygonCollider2D polygon = gameObject.GetComponent<PolygonCollider2D>();
+        for(int p = 1; p < points.Length; p++)
+        {
+            Vector2[] pos = new Vector2[points[p-1].size+points[p].size+2];
+            int index = 0;
+            for(int i = 0; i < points[p - 1].size + 1; i++)
+            {
+                Debug.Log(i * 2 + Vsum - (2 * (points[p - 1].size + 1)));
+                pos[index] = mesh.vertices[i * 2 + Vsum - (2 * (points[p - 1].size + 1))];
+                index++;
+            }
+            for(int i = 0; i < points[p].size + 1; i++)
+            {
+                Debug.Log("Vsum"+Vsum);
+                Debug.Log(Vsum + (2*(points[p].size + 1))-1 - (i * 2));
+                pos[index] = mesh.vertices[Vsum + (2 * (points[p].size + 1)) - 1 - (i * 2)];
+                index++;
+            }
+            polygon.pathCount++;
+            polygon.SetPath(polygon.pathCount - 1, pos);
+        }
+    }
 }
