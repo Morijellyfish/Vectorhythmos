@@ -208,6 +208,7 @@ public class HoldNoteMesh : MonoBehaviour
                 pos[index] = mesh.vertices[Vsum + (2 * (points[p].size + 1)) - 1 - (i * 2)];
                 index++;
             }
+            Vsum += 2 * (points[p].size + 1);
             polygon.pathCount++;
             polygon.SetPath(polygon.pathCount - 1, pos);
         }
