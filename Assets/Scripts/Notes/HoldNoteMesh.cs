@@ -197,14 +197,11 @@ public class HoldNoteMesh : MonoBehaviour
             int index = 0;
             for(int i = 0; i < points[p - 1].size + 1; i++)
             {
-                Debug.Log(i * 2 + Vsum - (2 * (points[p - 1].size + 1)));
                 pos[index] = mesh.vertices[i * 2 + Vsum - (2 * (points[p - 1].size + 1))];
                 index++;
             }
             for(int i = 0; i < points[p].size + 1; i++)
             {
-                Debug.Log("Vsum"+Vsum);
-                Debug.Log(Vsum + (2*(points[p].size + 1))-1 - (i * 2));
                 pos[index] = mesh.vertices[Vsum + (2 * (points[p].size + 1)) - 1 - (i * 2)];
                 index++;
             }

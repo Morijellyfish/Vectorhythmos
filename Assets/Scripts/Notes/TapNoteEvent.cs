@@ -17,7 +17,7 @@ public class TapNoteEvent : MonoBehaviour
     }
     public void Tap()
     {
-        Debug.Log(this.gameObject.name);
+        Debug.Log("Tapped:"+this.gameObject.name);
         Destroy(this.gameObject);
 
     }

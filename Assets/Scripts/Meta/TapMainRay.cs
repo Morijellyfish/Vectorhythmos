@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class TapMainRay : MonoBehaviour
 {
+    static public List<int> fingers = new List<int>();
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,6 @@ public class TapMainRay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.touchCount != 0)
         {
             foreach (var touch in Input.touches)
@@ -27,21 +27,21 @@ public class TapMainRay : MonoBehaviour
 
                 DrawRay(hit,raystart);//debug
                 
-                if (hit.Length != 0)
+                if (touch.phase == TouchPhase.Began)
                 {
-                    //tap
-                    if (touch.phase == TouchPhase.Began)
+                    fingers.Add(touch.fingerId);
+                    if (hit.Length != 0)
                     {
                         TapnoteTap(LayerSort(hit, 8));//Tapnotes
+                        HoldnoteTap(LayerSort(hit, 9), touch.fingerId);//Holdnotes
                     }
                 }
                 if (touch.phase == TouchPhase.Ended)
                 {
-                    HoldNoteEvent.TouchEnded(touch.tapCount);
+                    fingers.Remove(touch.fingerId);
                 }
-
-
-                var keys = LayerSort(hit, 31);
+                
+                var keys = LayerSort(hit, 31);//keybeam
                 foreach(var obj in keys)
                 {
                     obj.transform.parent.GetComponent<Keybeam>().hold = true;
@@ -105,5 +105,11 @@ public class TapMainRay : MonoBehaviour
         }
     }
 
-
+    void HoldnoteTap(GameObject[] taps,int finger)
+    {
+        foreach(var obj in taps)
+        {
+            obj.GetComponent<HoldNoteEvent>().Tap(finger);
+        }
+    }
 }
