@@ -25,11 +25,9 @@ public class HoldNoteEvent : MonoBehaviour
         {
             holding = false;
         }
-        Debug.Log(holding);
     }
     public void Tap(int finger)
     {
-        Debug.Log("HoldStart:" + finger);
         fingers.Add(finger);
     }
     

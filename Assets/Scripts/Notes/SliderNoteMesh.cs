@@ -11,6 +11,7 @@ public class SliderNoteMesh : MonoBehaviour
     [SerializeField] public AnimationCurve Curve;
     [SerializeField] public float LandingTime;//着弾時刻
     [SerializeField] public LR type;
+    public char direction;
     public enum LR
     {
         Left,Right
@@ -19,7 +20,14 @@ public class SliderNoteMesh : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (type == LR.Left)
+        {
+            direction = 'L';
+        }
+        if (type == LR.Right)
+        {
+            direction = 'R';
+        }
     }
 
     // Update is called once per frame
