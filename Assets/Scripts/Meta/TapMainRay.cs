@@ -33,12 +33,11 @@ public class TapMainRay : MonoBehaviour
                     if (hit.Length != 0)
                     {
                         TapnoteTap(LayerSort(hit, 8));//Tapnotes
-                        HoldnoteTap(LayerSort(hit, 9), touch.fingerId);//Holdnotes
                     }
                 }
-                if (touch.phase == TouchPhase.Ended)
+                if (hit.Length != 0)
                 {
-                    fingers.Remove(touch.fingerId);
+                    Holdnote(LayerSort(hit, 9));//Holdnotes
                 }
                 
                 var keys = LayerSort(hit, 31);//keybeam
@@ -51,6 +50,7 @@ public class TapMainRay : MonoBehaviour
         }
     }
 
+    //Debug
     void DrawRay(RaycastHit2D[] hit,Vector3 raystart)
     {
         if (hit.Length != 0)
@@ -105,11 +105,11 @@ public class TapMainRay : MonoBehaviour
         }
     }
 
-    void HoldnoteTap(GameObject[] taps,int finger)
+    void Holdnote(GameObject[] taps)
     {
         foreach(var obj in taps)
         {
-            obj.GetComponent<HoldNoteEvent>().Tap(finger);
+            obj.GetComponent<HoldNoteEvent>().Hold();
         }
     }
 }

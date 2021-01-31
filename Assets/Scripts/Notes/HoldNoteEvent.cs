@@ -5,30 +5,33 @@ using UnityEngine;
 
 public class HoldNoteEvent : MonoBehaviour
 {
-    private List<int> fingers = new List<int>();
     public bool holding = false;
+    HoldNoteMesh mesh_script;
     // Start is called before the first frame update
     void Start()
     {
-        
+        mesh_script = GetComponent<HoldNoteMesh>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        fingers = fingers.Intersect(TapMainRay.fingers).ToList();
-        if (fingers.Count != 0)
+        if (mesh_script.points[0].LandingTime <= TimeManager.time)
         {
-            holding = true;
-        }
-        else
-        {
-            holding = false;
+            if (holding)
+            {
+                holding = false;
+                Debug.Log("holding:true");
+            }
+            else
+            {
+                Debug.Log("holding:false");
+            }
         }
     }
-    public void Tap(int finger)
+    public void Hold()
     {
-        fingers.Add(finger);
+        holding = true;
     }
     
 }

@@ -9,6 +9,7 @@ public class SliderNoteEvent : MonoBehaviour
         if (GetComponent<SliderNoteMesh>().direction == c)
         {
             Debug.Log(c);
+            Destroy(this.gameObject);
         }
     }
 }

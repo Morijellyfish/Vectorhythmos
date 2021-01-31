@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HoldNoteMesh : MonoBehaviour
 {
-    [SerializeField] Note[] points;
+    [SerializeField] public Note[] points;
 
     [Serializable]
     public class Note
