@@ -88,15 +88,16 @@ public class HoldNoteMesh : MonoBehaviour
             }
 
             Color[] colors = new Color[pos.Length];
-
+            float a;
+            a = GetComponent<HoldNoteEvent>().holding ? 1 : 0.5f;
             for (int i = 0; i < colors.Length; i++)
             {
-                colors[i] = new Color(0.5f, 0.5f, 1);
+                colors[i] = new Color(0.5f, 0.5f, 1) * a;
             }
-            colors[0] = Color.blue;
-            colors[1] = Color.blue;
-            colors[points[p].size * 2] = Color.blue;
-            colors[points[p].size * 2 + 1] = Color.blue;
+            colors[0] = Color.blue * a;
+            colors[1] = Color.blue * a;
+            colors[points[p].size * 2] = Color.blue * a;
+            colors[points[p].size * 2 + 1] = Color.blue * a;
             
 
 

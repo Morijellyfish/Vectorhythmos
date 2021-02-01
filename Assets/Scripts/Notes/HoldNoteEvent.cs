@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class HoldNoteEvent : MonoBehaviour
 {
-    public bool holding = false;
+    public bool holding = true;
+    bool nowhold = true;
+    bool holded = false;
     HoldNoteMesh mesh_script;
     // Start is called before the first frame update
     void Start()
@@ -18,20 +20,26 @@ public class HoldNoteEvent : MonoBehaviour
     {
         if (mesh_script.points[0].LandingTime <= TimeManager.time)
         {
+            holding = nowhold || holded;
             if (holding)
             {
-                holding = false;
                 Debug.Log("holding:true");
             }
             else
             {
                 Debug.Log("holding:false");
             }
+            holded = nowhold;
+            nowhold = false;
+        }
+        else
+        {
+            holding = true;
         }
     }
     public void Hold()
     {
-        holding = true;
+        nowhold = true;
     }
     
 }
